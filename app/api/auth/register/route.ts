@@ -1,4 +1,3 @@
-import { connectDB } from "@/lib/db";
 import { User } from "@/model/User.model";
 import { hashPassword } from "@/lib/bcrypt";
 import dbConnect from "@/lib/dbConnect";
@@ -10,6 +9,7 @@ export async function POST(req: Request) {
     await dbConnect();
 
     const exists = await User.findOne({ email });
+
     if (exists) return Response.json({ error: "User already exists!" });
 
     const hashed = await hashPassword(password);
