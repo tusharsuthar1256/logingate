@@ -5,6 +5,11 @@ import { useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from 'framer-motion';
 import { CheckCircle, ShieldAlert, TrendingDown, TrendingUp, Zap } from "lucide-react";
 
+interface DataPoint {
+  label: string;
+  value: number;
+  timestamp: string;
+}
 
 const InteractiveChart = ({ 
   data, 
