@@ -21,14 +21,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isDarkMode, toggleTheme, onNaviga
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-[#0A0A0B] pb-20 transition-colors duration-300">
-      <Navbar
-        isDarkMode={isDarkMode} 
-        toggleTheme={toggleTheme} 
-        mode="dashboard"
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-        onNavigate={onNavigateHome}
-      />
+      <Navbar/>
       
       <div className="pt-28 px-6 max-w-7xl mx-auto">
         <motion.div
