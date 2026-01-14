@@ -5,7 +5,7 @@ const CursorSpotlight = () => {
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const move = (e) => {
+    const move = (e:any) => {
       requestAnimationFrame(() => {
         setPos({ x: e.clientX, y: e.clientY });
       });
