@@ -30,7 +30,7 @@
     const navigateToDashboard = (tab = 'sign-in') => {
       setDashboardTab(tab);
       window.scrollTo(0, 0);
-      setCurrentView('sign-in');
+      setCurrentView('dashboard');
     };
 
     const navigateToLanding = () => {
@@ -44,14 +44,9 @@
         
         {currentView === 'landing' ? (
           <>
-            <Navbar
-              isDarkMode={isDarkMode} 
-              toggleTheme={toggleTheme} 
-              mode="landing"
-              onNavigate={(tab) => navigateToDashboard(typeof tab === 'string' ? tab : 'sign-in')}
-            />
+            <Navbar/>
             <main>
-              <Hero onStart={() => navigateToDashboard('analysis')} />
+              <Hero onStart={() => navigateToDashboard('analysis')}  />
               <Features />
               <LiveDemo />
               <Pricing onSelectPlan={() => navigateToDashboard('analysis')} />

@@ -5,10 +5,9 @@ import { ArrowRight, PlayCircle } from 'lucide-react';
 
 interface HeroProps {
   onStart?: () => void;
-  demo:String;
 }
 
-const Hero: React.FC<HeroProps> = ({ onStart, demo }) => {
+const Hero: React.FC<HeroProps> = ({ onStart }) => {
   return (
     <section className="relative pt-32 pb-20 md:pt-48 md:pb-40 px-6 overflow-hidden flex flex-col items-center justify-center min-h-[95vh] text-center">
       {/* Background Lighting/Atmosphere */}
