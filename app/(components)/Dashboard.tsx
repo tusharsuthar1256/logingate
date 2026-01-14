@@ -306,7 +306,7 @@ const ChecklistView = () => {
       {/* Add Entry Modal */}
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
             <motion.div 
               initial={{ opacity: 0 }} 
               animate={{ opacity: 1 }} 
@@ -391,7 +391,7 @@ const Callout = ({ type = 'info', children }: { type?: 'info' | 'warning', child
       ? 'bg-blue-50 dark:bg-blue-500/10 text-blue-900 dark:text-blue-100 border border-blue-100 dark:border-blue-500/20' 
       : 'bg-orange-50 dark:bg-orange-500/10 text-orange-900 dark:text-orange-100 border border-orange-100 dark:border-orange-500/20'
   }`}>
-    <div className="flex-shrink-0 mt-0.5">
+    <div className="shrink-0 mt-0.5">
       {type === 'info' ? <Info size={16} /> : <AlertTriangle size={16} />}
     </div>
     <div>{children}</div>
@@ -410,7 +410,7 @@ const DocsView = () => {
   return (
     <div className="flex flex-col lg:flex-row min-h-[80vh] relative">
       {/* Left Sidebar (Sticky) */}
-      <aside className="hidden lg:block w-64 flex-shrink-0 border-r border-gray-200 dark:border-white/10 mr-12 pr-6">
+      <aside className="hidden lg:block w-64 shrink-0 border-r border-gray-200 dark:border-white/10 mr-12 pr-6">
         <div className="sticky top-32">
           <div className="space-y-8">
             <div>
@@ -497,7 +497,7 @@ const DocsView = () => {
       </div>
 
       {/* Right Sidebar (TOC) */}
-      <aside className="hidden xl:block w-64 flex-shrink-0 ml-12 border-l border-gray-200 dark:border-white/10 pl-6">
+      <aside className="hidden xl:block w-64 shrink-0 ml-12 border-l border-gray-200 dark:border-white/10 pl-6">
         <div className="sticky top-32">
           <h5 className="font-bold text-gray-900 dark:text-white mb-4 text-xs uppercase tracking-wider">On This Page</h5>
           <ul className="space-y-3 text-sm">
@@ -571,7 +571,7 @@ const SettingsView = () => (
 
 // Helper Components
 const StatCard = ({ title, value, change, icon: Icon, color }: any) => (
-  <div className="p-6 rounded-3xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 shadow-sm hover:translate-y-[-2px] transition-transform">
+  <div className="p-6 rounded-3xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 shadow-sm hover:translate-y-0.5 transition-transform">
     <div className="flex items-center justify-between mb-4">
       <div className={`p-2 rounded-xl bg-gray-50 dark:bg-white/5 ${color} bg-opacity-10`}>
         <Icon size={22} className={color} />

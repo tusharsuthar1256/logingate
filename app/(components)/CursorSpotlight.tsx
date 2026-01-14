@@ -16,7 +16,7 @@ const CursorSpotlight = () => {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-[9999]"
+      className="pointer-events-none fixed inset-0 z-9999"
       style={{
         background: `radial-gradient(600px circle at ${pos.x}px ${pos.y}px, var(--spotlight-color), transparent 60%)`,
       }}

@@ -17,7 +17,7 @@ const Hero: React.FC<HeroProps> = ({ onStart, demo }) => {
         <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/20 dark:bg-primary/15 rounded-[100%] blur-[120px]" />
         
         {/* Bottom wave glow */}
-        <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[120%] h-[600px] bg-gradient-to-t from-primary/10 via-indigo-900/5 to-transparent blur-3xl opacity-60 dark:opacity-100" />
+        <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[120%] h-[600px] bg-linear-to-t from-primary/10 via-indigo-900/5 to-transparent blur-3xl opacity-60 dark:opacity-100" />
         
         {/* Mesh grid subtle overlay */}
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
@@ -45,11 +45,11 @@ const Hero: React.FC<HeroProps> = ({ onStart, demo }) => {
         >
           Catch Fake Emails <br />
           <span 
-            className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-primary to-indigo-400 bg-[length:200%_auto] animate-gradient-slow group-hover:animate-gradient-fast transition-all duration-300 drop-shadow-sm"
+            className="relative inline-block text-transparent bg-clip-text bg-linear-to-r from-indigo-500 via-primary to-indigo-400 bg-size-[200%_auto] animate-gradient-slow group-hover:animate-gradient-fast transition-all duration-300 drop-shadow-sm"
             style={{ backgroundSize: '200% auto' }}
           >
             Before They Hit DB.
-            <span className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-white to-indigo-500 opacity-0 group-hover:opacity-20 bg-clip-text bg-[length:200%_auto] animate-gradient-fast blur-xl transition-opacity duration-300"></span>
+            <span className="absolute inset-0 bg-linear-to-r from-indigo-500 via-white to-indigo-500 opacity-0 group-hover:opacity-20 bg-clip-text bg-aize-[200%_auto] animate-gradient-fast blur-xl transition-opacity duration-300"></span>
           </span>
         </motion.h1>
         
@@ -102,7 +102,7 @@ const Hero: React.FC<HeroProps> = ({ onStart, demo }) => {
       </div>
 
       {/* Decorative glow at bottom of section for mesh feel */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-white/10 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gray-200 dark:via-white/10 to-transparent"></div>
 
       {/* Mouse Scroll Indicator */}
       <motion.div 
