@@ -11,7 +11,7 @@ const navLinks = [
   { name: "Dashboard", href: "/dashboard" },
   { name: "Checklist", href: "/checklist" },
   { name: "Analytics", href: "/analytics" },
-  { name: "Docs", href: "/docs" },
+  { name: "Docs", href: "https://docs.logingate.live" },
   { name: "Settings", href: "/settings" },
 ];
 
@@ -38,8 +38,8 @@ export default function DashboardNavbar() {
               key={link.name}
               href={link.href}
               className={`text-sm font-semibold transition-colors ${pathname === link.href
-                  ? "text-gray-900 dark:text-white"
-                  : "text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                ? "text-gray-900 dark:text-white"
+                : "text-gray-500 hover:text-gray-900 dark:hover:text-white"
                 }`}
             >
               {link.name}
@@ -81,8 +81,8 @@ export default function DashboardNavbar() {
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className={`font-semibold ${pathname === link.href
-                    ? "text-gray-900 dark:text-white"
-                    : "text-gray-500"
+                  ? "text-gray-900 dark:text-white"
+                  : "text-gray-500"
                   }`}
               >
                 {link.name}

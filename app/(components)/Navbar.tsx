@@ -38,7 +38,7 @@ export default function Navbar() {
               <Link href="#features" className="px-4 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors">
                 Features
               </Link>
-              <Link href="/docs" className="px-4 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors">
+              <Link href="https://docs.logingate.live" target="_blank" className="px-4 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors">
                 Docs
               </Link>
               <Link href="#pricing" className="px-4 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors">
@@ -62,7 +62,7 @@ export default function Navbar() {
               <Link href="/settings" className="px-4 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors">
                 Settings
               </Link>
-              <Link href="/docs" className="px-4 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors">
+              <Link href="https://docs.logingate.live" target="_blank" className="px-4 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors">
                 Docs
               </Link>
             </>
@@ -135,7 +135,7 @@ export default function Navbar() {
             {isHome && (
               <>
                 <Link href="#features" className="p-3 rounded-xl hover:bg-white/5 transition-colors">Features</Link>
-                <Link href="/docs" className="p-3 rounded-xl hover:bg-white/5 transition-colors">Docs</Link>
+                <Link href="https://docs.logingate.live" target="_blank" className="p-3 rounded-xl hover:bg-white/5 transition-colors">Docs</Link>
                 <Link href="#pricing" className="p-3 rounded-xl hover:bg-white/5 transition-colors">Pricing</Link>
               </>
             )}
@@ -145,7 +145,7 @@ export default function Navbar() {
                 <Link href="/dashboard" className="p-3 rounded-xl hover:bg-white/5 transition-colors">Dashboard</Link>
                 <Link href="/checklist" className="p-3 rounded-xl hover:bg-white/5 transition-colors">Checklist</Link>
                 <Link href="/analytics" className="p-3 rounded-xl hover:bg-white/5 transition-colors">Analytics</Link>
-                <Link href="/docs" className="p-3 rounded-xl hover:bg-white/5 transition-colors">Docs</Link>
+                <Link href="https://docs.logingate.live" target="_blank" className="p-3 rounded-xl hover:bg-white/5 transition-colors">Docs</Link>
                 <Link href="/settings" className="p-3 rounded-xl hover:bg-white/5 transition-colors">Settings</Link>
               </>
             )}

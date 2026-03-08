@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
           <ul className="space-y-4 text-sm text-gray-600 dark:text-gray-400">
             <li><a href="#" className="hover:text-primary transition-colors">Features</a></li>
             <li><a href="#" className="hover:text-primary transition-colors">Pricing</a></li>
-            <li><a href="#" className="hover:text-primary transition-colors">Documentation</a></li>
+            <li><a href="https://docs.logingate.live" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Documentation</a></li>
             <li><a href="#" className="hover:text-primary transition-colors">Changelog</a></li>
           </ul>
         </div>
