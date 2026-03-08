@@ -125,7 +125,7 @@ const AnalyticsView = () => {
                     const isExpanded = expandedId === log._id;
                     const logEmail = log.requestPayload?.email || "Unknown";
                     const formattedDate = new Date(log.createdAt).toLocaleString();
-                    const isAllowed = log.verdict === 'allow';
+                    const isAllowed = ['allow', 'safe', 'pass', 'valid'].includes(log.verdict?.toLowerCase() || '');
 
                     return (
                       <React.Fragment key={log._id}>
@@ -145,7 +145,7 @@ const AnalyticsView = () => {
                               : 'bg-red-50 dark:bg-red-500/10 text-red-700 dark:text-red-400 border-red-200 dark:border-red-500/20'
                               }`}>
                               {isAllowed ? <CheckCircle size={12} /> : <AlertCircle size={12} />}
-                              {log.verdict.toUpperCase()}
+                              {log.verdict ? log.verdict.toUpperCase() : 'UNKNOWN'}
                             </div>
                           </td>
                           <td className="px-6 py-4 text-right">

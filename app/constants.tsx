@@ -26,12 +26,12 @@ export const FEATURES: FeatureItem[] = [
 
 export const FAQS: FAQItem[] = [
   {
-    question: "How does MailVex prevent fake accounts?",
+    question: "How does LOGINGATE prevent fake accounts?",
     answer: "We use a combination of predatory behavior analysis, real-time DNS checks, and advanced algorithms to identify and flag disposable addresses, known bad IPs, and fraudulent patterns before they enter your database."
   },
   {
     question: "Will this affect legitimate users?",
-    answer: "MailVex is designed to minimize false positives. Our checks are highly accurate, and you can configure risk thresholds to ensure legitimate users are never impacted."
+    answer: "LOGINGATE is designed to minimize false positives. Our checks are highly accurate, and you can configure risk thresholds to ensure legitimate users are never impacted."
   },
   {
     question: "Can I customize protection levels?",

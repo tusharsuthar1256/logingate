@@ -1,17 +1,16 @@
 
 import React from 'react';
-import { 
-  ChevronRight, ArrowRight, ExternalLink, Info, AlertTriangle, 
+import {
+  ChevronRight, ArrowRight, ExternalLink, Info, AlertTriangle,
   Sun
 } from 'lucide-react';
 import Link from 'next/link';
 
 const Callout = ({ type = 'info', children }: { type?: 'info' | 'warning', children?: React.ReactNode }) => (
-  <div className={`my-6 p-4 rounded-lg flex gap-3 text-sm ${
-    type === 'info' 
-      ? 'bg-blue-50 dark:bg-blue-500/10 text-blue-900 dark:text-blue-100 border border-blue-100 dark:border-blue-500/20' 
+  <div className={`my-6 p-4 rounded-lg flex gap-3 text-sm ${type === 'info'
+      ? 'bg-blue-50 dark:bg-blue-500/10 text-blue-900 dark:text-blue-100 border border-blue-100 dark:border-blue-500/20'
       : 'bg-orange-50 dark:bg-orange-500/10 text-orange-900 dark:text-orange-100 border border-orange-100 dark:border-orange-500/20'
-  }`}>
+    }`}>
     <div className="flex-shrink-0 mt-0.5">
       {type === 'info' ? <Info size={16} /> : <AlertTriangle size={16} />}
     </div>
@@ -27,43 +26,43 @@ const CodeBlock = ({ children }: { children?: React.ReactNode }) => (
 
 const Docs = () => {
   return (
-    
+
     <div className="flex flex-col lg:flex-row min-h-[80vh] relative mx-40 mt-20">
-       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-white/5 py-3">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        
-        {/* Logo */}
-        <Link href={"/"}>
-        <div className="flex items-center gap-2 font-bold text-xl sm:text-2xl text-gray-900 dark:text-white cursor-pointer">
-          MailVex.
-        </div>
-        </Link>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-white/5 py-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
 
-     
-
-        {/* Desktop Right Side */}
-        <div className="hidden md:flex items-center gap-3">
-          {/* Theme Button */}
-          <button className="p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300">
-            <Sun size={20} />
-          </button>
-
-          {/* CTA Button */}
+          {/* Logo */}
           <Link href={"/"}>
-           <button
-                     
-                     className="flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-                   >
-                     Website <ArrowRight size={16} />
-                   </button>
+            <div className="flex items-center gap-2 font-bold text-xl sm:text-2xl text-gray-900 dark:text-white cursor-pointer tracking-tighter">
+              LOGINGATE
+            </div>
           </Link>
+
+
+
+          {/* Desktop Right Side */}
+          <div className="hidden md:flex items-center gap-3">
+            {/* Theme Button */}
+            <button className="p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300">
+              <Sun size={20} />
+            </button>
+
+            {/* CTA Button */}
+            <Link href={"/"}>
+              <button
+
+                className="flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                Website <ArrowRight size={16} />
+              </button>
+            </Link>
+          </div>
         </div>
-      </div>
 
-       
 
-    
-    </nav>
+
+
+      </nav>
       <aside className="hidden lg:block w-64 flex-shrink-0 border-r border-gray-200 dark:border-white/10 mr-12 pr-6">
         <div className="sticky top-32">
           <div className="space-y-8">
@@ -90,7 +89,7 @@ const Docs = () => {
       {/* Main Content */}
       <div className="flex-1 min-w-0 pb-16">
         <div className="flex items-center gap-2 text-sm text-gray-500 mb-6 font-medium">
-          <span className="hover:text-gray-900 dark:hover:text-white cursor-pointer">MailVex</span>
+          <span className="hover:text-gray-900 dark:hover:text-white cursor-pointer">LOGINGATE</span>
           <ChevronRight size={14} />
           <span className="hover:text-gray-900 dark:hover:text-white cursor-pointer">Getting Started</span>
           <ChevronRight size={14} />
@@ -98,9 +97,9 @@ const Docs = () => {
         </div>
 
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">Introduction</h1>
-        
+
         <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-          MailVex provides a high-performance REST API for detecting disposable emails, fake signups, and high-risk IP addresses in real-time.
+          LOGINGATE provides a high-performance REST API for detecting disposable emails, fake signups, and high-risk IP addresses in real-time.
         </p>
 
         <Callout type="info">
@@ -124,7 +123,7 @@ const Docs = () => {
 
         <CodeBlock>
           <pre className="text-gray-500">
-{`{
+            {`{
   "success": `}<span className="text-blue-500">true</span>{`,
   "data": {
     "email": `}<span className="text-green-500">"test@example.com"</span>{`,
@@ -144,9 +143,9 @@ const Docs = () => {
             </div>
           </a>
         </div>
-        
+
         <div className="mt-12 flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 transition-colors cursor-pointer">
-           <ExternalLink size={14} /> Edit this page on GitHub
+          <ExternalLink size={14} /> Edit this page on GitHub
         </div>
       </div>
 

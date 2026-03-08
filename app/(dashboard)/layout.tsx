@@ -5,6 +5,8 @@ import { User } from "@/model/User.model";
 import dbConnect from "@/lib/dbConnect";
 import { redirect } from "next/navigation";
 
+import { sendWelcomeEmail } from "@/lib/mailservice";
+
 export default async function DashboardLayout({
   children,
 }: {
@@ -22,19 +24,25 @@ export default async function DashboardLayout({
           await User.create({
             name: user.fullName || "New User",
             email: email,
+            clerkId: user.id,
             password: "", // No password since they use Clerk
           });
+          // Send Welcome Email
+          await sendWelcomeEmail(email, user.firstName || "there");
+        } else if (!existingUser.clerkId) {
+          existingUser.clerkId = user.id;
+          await existingUser.save();
         }
       }
     } catch (error) {
       console.error("Failed to sync user with MongoDB:", error);
     }
   } else {
-    redirect("/sign-in");
+    redirect("/login");
   }
 
   return (
-    <section className="min-h-screen bg-gray-50 dark:bg-[#0A0A0B] antialiased">
+    <section className="min-h-screen bg-[#0A0A0B] antialiased text-white">
       <Navbar />
       <main className="px-4 py-6 mt-[100px] max-w-7xl mx-auto">
         {children}

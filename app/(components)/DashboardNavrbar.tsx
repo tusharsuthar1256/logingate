@@ -27,8 +27,8 @@ export default function DashboardNavbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
 
         {/* LOGO */}
-        <Link href="/" className="font-bold text-xl text-gray-900 dark:text-white">
-          MailVex.
+        <Link href="/" className="font-bold text-xl text-gray-900 dark:text-white tracking-tighter">
+          LOGINGATE
         </Link>
 
         {/* DESKTOP NAV LINKS */}
@@ -37,11 +37,10 @@ export default function DashboardNavbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-sm font-semibold transition-colors ${
-                pathname === link.href
+              className={`text-sm font-semibold transition-colors ${pathname === link.href
                   ? "text-gray-900 dark:text-white"
                   : "text-gray-500 hover:text-gray-900 dark:hover:text-white"
-              }`}
+                }`}
             >
               {link.name}
             </Link>
@@ -81,11 +80,10 @@ export default function DashboardNavbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`font-semibold ${
-                  pathname === link.href
+                className={`font-semibold ${pathname === link.href
                     ? "text-gray-900 dark:text-white"
                     : "text-gray-500"
-                }`}
+                  }`}
               >
                 {link.name}
               </Link>

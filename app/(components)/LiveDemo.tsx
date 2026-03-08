@@ -44,68 +44,68 @@ const LiveDemo: React.FC = () => {
     <section id="demo" className="py-24 px-6 relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
+
           {/* Left Text */}
           <div>
-            <div className="inline-block px-4 py-1.5 rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-sm font-medium text-gray-800 dark:text-gray-200 mb-6">
+            <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium text-gray-200 mb-6">
               Live Interactive Demo
             </div>
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 dark:text-white mb-6">
-              Try it — See a live <br/> API response.
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+              Try it — See a live <br /> API response.
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md">
+            <p className="text-lg text-gray-400 mb-8 max-w-md">
               Enter any email address to see how MailVex analyzes the domain, MX records, and historical data to return a risk score.
             </p>
-            
+
             <div className="flex flex-col gap-4">
-               <div className="p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                 <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Simple Integration</h4>
-                 <p className="text-sm text-gray-500 font-mono">GET https://api.mailvex.com/v1/verify</p>
-               </div>
-               <div className="p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                 <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Ultra-low Latency</h4>
-                 <p className="text-sm text-gray-500">Average response time {'<'} 150ms</p>
-               </div>
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5">
+                <h4 className="font-semibold text-white mb-1">Simple Integration</h4>
+                <p className="text-sm text-gray-500 font-mono">GET https://api.mailvex.com/v1/verify</p>
+              </div>
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5">
+                <h4 className="font-semibold text-white mb-1">Ultra-low Latency</h4>
+                <p className="text-sm text-gray-500">Average response time {'<'} 150ms</p>
+              </div>
             </div>
           </div>
 
           {/* Right Demo Card */}
-          <div className="glass-card rounded-3xl p-6 md:p-8 shadow-2xl border border-gray-200 dark:border-gray-800 relative bg-white dark:bg-[#121214]">
-             {/* Input Area */}
-             <div className="flex gap-2 mb-6">
-               <input 
-                 type="email" 
-                 value={email}
-                 onChange={(e) => setEmail(e.target.value)}
-                 className="flex-1 bg-gray-100 dark:bg-black/40 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                 placeholder="name@company.com"
-               />
-               <button 
-                 onClick={handleCheck}
-                 disabled={loading}
-                 className="bg-primary hover:bg-indigo-600 text-white px-6 rounded-xl font-medium transition-colors disabled:opacity-50 flex items-center justify-center min-w-[100px]"
-               >
-                 {loading ? (
-                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                 ) : (
-                   "Check"
-                 )}
-               </button>
-             </div>
+          <div className="glass-card rounded-3xl p-6 md:p-8 shadow-2xl border border-gray-800 relative bg-[#121214]">
+            {/* Input Area */}
+            <div className="flex gap-2 mb-6">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                placeholder="name@company.com"
+              />
+              <button
+                onClick={handleCheck}
+                disabled={loading}
+                className="bg-primary hover:bg-indigo-600 text-white px-6 rounded-xl font-medium transition-colors disabled:opacity-50 flex items-center justify-center min-w-[100px]"
+              >
+                {loading ? (
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                ) : (
+                  "Check"
+                )}
+              </button>
+            </div>
 
-             {/* Output Area */}
-             <div className="relative bg-gray-900 rounded-xl p-5 overflow-hidden min-h-[300px] border border-gray-800">
-               <div className="absolute top-0 left-0 w-full h-8 bg-gray-800 flex items-center px-4 border-b border-gray-700 justify-between">
-                 <span className="text-xs text-gray-500 font-mono">Response Body</span>
-                 <button onClick={copyToClipboard} className="text-gray-500 hover:text-white transition-colors">
-                   {copied ? <Check size={14} /> : <Copy size={14} />}
-                 </button>
-               </div>
-               
-               <div className="mt-6 overflow-auto font-mono text-xs md:text-sm text-gray-300 leading-relaxed max-h-[250px] custom-scrollbar">
-                 {result ? (
-                   <pre className="animate-in fade-in duration-300">
-{`{
+            {/* Output Area */}
+            <div className="relative bg-gray-900 rounded-xl p-5 overflow-hidden min-h-[300px] border border-gray-800">
+              <div className="absolute top-0 left-0 w-full h-8 bg-gray-800 flex items-center px-4 border-b border-gray-700 justify-between">
+                <span className="text-xs text-gray-500 font-mono">Response Body</span>
+                <button onClick={copyToClipboard} className="text-gray-500 hover:text-white transition-colors">
+                  {copied ? <Check size={14} /> : <Copy size={14} />}
+                </button>
+              </div>
+
+              <div className="mt-6 overflow-auto font-mono text-xs md:text-sm text-gray-300 leading-relaxed max-h-[250px] custom-scrollbar">
+                {result ? (
+                  <pre className="animate-in fade-in duration-300">
+                    {`{
   "success": `}<span className="text-blue-400">{String(result.success)}</span>{`,
   "data": {
     "email": `}<span className="text-amber-300">"{result.data.email}"</span>{`,
@@ -120,15 +120,15 @@ const LiveDemo: React.FC = () => {
     }
   }
 }`}
-                   </pre>
-                 ) : (
-                    <div className="flex flex-col items-center justify-center h-full text-gray-600 gap-3 mt-12">
-                      <Play size={32} className="opacity-20" />
-                      <p>Run a check to see response</p>
-                    </div>
-                 )}
-               </div>
-             </div>
+                  </pre>
+                ) : (
+                  <div className="flex flex-col items-center justify-center h-full text-gray-600 gap-3 mt-12">
+                    <Play size={32} className="opacity-20" />
+                    <p>Run a check to see response</p>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

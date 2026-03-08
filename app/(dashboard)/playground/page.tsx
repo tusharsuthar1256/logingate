@@ -43,7 +43,7 @@ const CodeEditor = ({ code, language }: { code: string; language: string }) => {
     };
 
     return (
-        <div className="flex bg-[#1e1e1e] font-mono text-[13px] leading-relaxed overflow-hidden">
+        <div className="flex bg-[#1e1e1e] font-mono text-[15px] sm:text-base leading-relaxed overflow-y-auto overflow-x-hidden h-auto">
             {/* Line Numbers */}
             <div className="bg-[#1e1e1e] px-4 py-6 border-r border-[#333] text-[#858585] text-right select-none min-w-[50px]">
                 {lines.map((_, i) => (
@@ -193,35 +193,35 @@ print(response.json())`,
     };
 
     return (
-        <div className="max-w-7xl mx-auto space-y-8 animate-in fade-in duration-500 pb-20">
+        <div className="max-w-7xl mx-auto space-y-8 animate-in fade-in duration-500 pb-20 mt-8 pt-4">
             <div className="mb-8">
                 <div className="flex items-center gap-3 mb-2">
                     <div className="p-2 bg-primary/10 rounded-xl">
                         <Play size={24} className="text-primary" />
                     </div>
-                    <h1 className="text-3xl font-display font-bold text-gray-900 dark:text-white">API Playground</h1>
+                    <h1 className="text-3xl font-display font-bold text-white">API Playground</h1>
                 </div>
-                <p className="text-gray-500 dark:text-gray-400">Test your email verification API in real-time and get integration code snippets.</p>
+                <p className="text-gray-400">Test your email verification API in real-time and get integration code snippets.</p>
             </div>
 
             <div className="grid lg:grid-cols-12 gap-8 items-start">
                 {/* Request Configuration - Column 1 (4/12) */}
                 <div className="lg:col-span-4 space-y-6">
-                    <div className="p-6 rounded-3xl bg-white dark:bg-[#121214] border border-gray-200 dark:border-white/10 shadow-sm">
-                        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                    <div className="p-6 rounded-3xl bg-[#121214] border border-white/10 shadow-sm">
+                        <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
                             <Send size={20} className="text-primary" /> Configuration
                         </h3>
 
                         <form onSubmit={handleTestApi} className="space-y-6">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
+                                <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
                                     <Key size={14} /> API Key
                                 </label>
                                 <div className="relative">
                                     <select
                                         value={selectedKey}
                                         onChange={(e) => setSelectedKey(e.target.value)}
-                                        className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-black/50 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none appearance-none cursor-pointer"
+                                        className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:ring-2 focus:ring-primary outline-none appearance-none cursor-pointer"
                                         disabled={fetchLoading || keys.length === 0}
                                     >
                                         {fetchLoading ? (
@@ -243,14 +243,14 @@ print(response.json())`,
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Test Email</label>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">Test Email</label>
                                 <input
                                     type="email"
                                     required
                                     placeholder="e.g. hello@example.com"
                                     value={testEmail}
                                     onChange={(e) => setTestEmail(e.target.value)}
-                                    className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-black/50 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none"
+                                    className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:ring-2 focus:ring-primary outline-none"
                                 />
                             </div>
 
@@ -317,9 +317,9 @@ print(response.json())`,
                     </div>
 
                     {/* Response Panel */}
-                    <div className="flex flex-col p-6 rounded-3xl bg-white dark:bg-[#121214] border border-gray-200 dark:border-white/10 shadow-sm overflow-hidden min-h-[300px]">
+                    <div className="flex flex-col p-6 rounded-3xl bg-[#121214] border border-white/10 shadow-sm overflow-hidden min-h-[300px]">
                         <div className="flex items-center justify-between mb-6">
-                            <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                            <h3 className="text-lg font-bold text-white flex items-center gap-2">
                                 <Terminal size={20} className="text-primary" /> API Response Output
                             </h3>
                             {response && (
@@ -330,10 +330,10 @@ print(response.json())`,
                             )}
                         </div>
 
-                        <div className="flex-1 bg-gray-50 dark:bg-black/50 rounded-2xl border border-gray-200 dark:border-white/5 p-4 font-mono text-sm overflow-auto max-h-[400px] custom-scrollbar">
+                        <div className="flex-1 bg-black/50 rounded-2xl border border-white/5 p-4 font-mono text-sm overflow-auto max-h-[800px] custom-scrollbar">
                             {!response && !loading && (
                                 <div className="h-full flex flex-col items-center justify-center text-gray-400 text-center space-y-4 min-h-[200px]">
-                                    <div className="p-4 bg-gray-100 dark:bg-white/5 rounded-full">
+                                    <div className="p-4 bg-white/5 rounded-full">
                                         <Terminal size={32} />
                                     </div>
                                     <p>Live response logs will appear here...</p>
@@ -342,9 +342,9 @@ print(response.json())`,
 
                             {loading && (
                                 <div className="space-y-3">
-                                    <div className="h-4 w-3/4 bg-gray-200 dark:bg-white/5 rounded animate-pulse"></div>
-                                    <div className="h-4 w-1/2 bg-gray-200 dark:bg-white/5 rounded animate-pulse"></div>
-                                    <div className="h-4 w-5/6 bg-gray-200 dark:bg-white/5 rounded animate-pulse"></div>
+                                    <div className="h-4 w-3/4 bg-white/5 rounded animate-pulse"></div>
+                                    <div className="h-4 w-1/2 bg-white/5 rounded animate-pulse"></div>
+                                    <div className="h-4 w-5/6 bg-white/5 rounded animate-pulse"></div>
                                 </div>
                             )}
 
@@ -353,7 +353,7 @@ print(response.json())`,
                                     <motion.pre
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        className="text-gray-800 dark:text-[#9cdcfe] whitespace-pre-wrap"
+                                        className="text-[#9cdcfe] whitespace-pre-wrap"
                                     >
                                         {JSON.stringify(response.data, null, 2)}
                                     </motion.pre>

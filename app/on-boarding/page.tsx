@@ -60,32 +60,32 @@ const Onboarding: React.FC<OnboardingProps> = ({ onNavigateHome }) => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-const handleSubmit = async () => {
-  if (!email.includes('@')) return;
+  const handleSubmit = async () => {
+    if (!email.includes('@')) return;
 
-  try {
-    setStatus('loading');
+    try {
+      setStatus('loading');
 
-    const res = await fetch("/api/subscribe", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
 
-    if (!res.ok) {
-      throw new Error("Failed to subscribe");
+      if (!res.ok) {
+        throw new Error("Failed to subscribe");
+      }
+
+      setStatus("success");
+      setEmail("");
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Please try again.");
+      setStatus("idle");
     }
-
-    setStatus("success");
-    setEmail("");
-  } catch (err) {
-    console.error(err);
-    alert("Something went wrong. Please try again.");
-    setStatus("idle");
-  }
-};
+  };
 
 
   const socialLinks = [
@@ -124,7 +124,7 @@ const handleSubmit = async () => {
 
         {/* Subtitle */}
         <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
-          MailVex is refining its final layers. Secure your spot in our private beta.
+          LOGINGATE is refining its final layers. Secure your spot in our private beta.
         </p>
 
         {/* Email Box */}

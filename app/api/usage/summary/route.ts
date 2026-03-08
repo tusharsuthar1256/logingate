@@ -35,13 +35,25 @@ export async function GET(request: Request) {
     // Total Threats for percentage
     const totalThreats = threatDist.reduce((acc, curr) => acc + curr.count, 0);
 
-    const colors = ["bg-red-500", "bg-orange-500", "bg-yellow-500", "bg-purple-500", "bg-gray-500"];
-    const distribution = threatDist.map((item, index) => ({
-      label: item._id,
-      percent: totalThreats > 0 ? Math.round((item.count / totalThreats) * 100) : 0,
-      count: item.count,
-      color: colors[index % colors.length]
-    })).sort((a, b) => b.percent - a.percent);
+    const allThreatTypes = [
+      "Invalid Format",
+      "Disposable Email",
+      "MX Record Missing",
+      "DNS Failure",
+      "High Risk Level"
+    ];
+
+    const colors = ["bg-red-500", "bg-orange-500", "bg-yellow-500", "bg-purple-500", "bg-blue-500"];
+    const distribution = allThreatTypes.map((threatName, index) => {
+      const found = threatDist.find(t => t._id === threatName);
+      const count = found ? found.count : 0;
+      return {
+        label: threatName,
+        percent: totalThreats > 0 ? Math.round((count / totalThreats) * 100) : 0,
+        count: count,
+        color: colors[index % colors.length]
+      };
+    }).sort((a, b) => b.percent - a.percent);
 
     // Activity over last 7 days
     const last7Days = new Date();
