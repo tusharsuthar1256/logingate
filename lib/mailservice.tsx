@@ -5,11 +5,24 @@ import { WelcomeEmail } from '@/components/emails/WelcomeEmail';
 import { AlertEmail } from '@/components/emails/AlertEmail';
 import React from 'react';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const getResendClient = () => {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+        console.warn("RESEND_API_KEY is missing. Email features will be disabled.");
+        return null;
+    }
+    return new Resend(apiKey);
+};
+
+const resend = getResendClient();
 const FROM_EMAIL = 'LOGINGATE <contact@contact.logingate.live>'; // Using the verified domain provided by user
 
 export const sendWelcomeEmail = async (toEmail: string, firstName: string) => {
     try {
+        if (!resend) {
+            console.error("Resend client is not initialized. Cannot send welcome email.");
+            return { success: false, error: "Email service unconfigured" };
+        }
         const { data, error } = await resend.emails.send({
             from: FROM_EMAIL,
             to: [toEmail],
@@ -30,6 +43,10 @@ export const sendWelcomeEmail = async (toEmail: string, firstName: string) => {
 
 export const sendAlertEmail = async (toEmail: string, details: { email: string, riskScore: number, threatType: string }) => {
     try {
+        if (!resend) {
+            console.error("Resend client is not initialized. Cannot send alert email.");
+            return { success: false, error: "Email service unconfigured" };
+        }
         const { data, error } = await resend.emails.send({
             from: FROM_EMAIL,
             to: [toEmail],
