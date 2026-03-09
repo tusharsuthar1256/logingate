@@ -43,18 +43,18 @@ const CodeEditor = ({ code, language }: { code: string; language: string }) => {
     };
 
     return (
-        <div className="flex bg-[#1e1e1e] font-mono text-[15px] sm:text-base leading-relaxed overflow-y-auto overflow-x-hidden h-auto">
+        <div className="flex bg-[#1e1e1e] font-mono text-[13px] sm:text-base leading-relaxed overflow-y-auto overflow-x-hidden h-auto">
             {/* Line Numbers */}
-            <div className="bg-[#1e1e1e] px-4 py-6 border-r border-[#333] text-[#858585] text-right select-none min-w-[50px]">
+            <div className="bg-[#1e1e1e] px-2 sm:px-4 py-4 sm:py-6 border-r border-[#333] text-[#858585] text-right select-none min-w-[35px] sm:min-w-[50px]">
                 {lines.map((_, i) => (
                     <div key={i}>{i + 1}</div>
                 ))}
             </div>
 
             {/* Code Content */}
-            <div className="flex-1 overflow-x-auto py-6 px-4 custom-scrollbar">
+            <div className="flex-1 overflow-x-auto py-4 sm:py-6 px-3 sm:px-4 custom-scrollbar font-sans sm:font-mono">
                 {lines.map((line, i) => (
-                    <div key={i} className="min-h-[1.5em] whitespace-pre">
+                    <div key={i} className="min-h-[1.5em] whitespace-pre text-[13px] sm:text-[15px]">
                         {highlight(line)}
                     </div>
                 ))}
@@ -86,6 +86,83 @@ const BashLogo = () => (
     </svg>
 );
 
+const GoLogo = () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.38 10.15c.34-2.82 2.58-4.88 5.62-4.88 3.51 0 6.01 2.53 6.01 5.9 0 3.32-2.39 5.8-5.75 5.8-2.6 0-4.59-1.31-5.46-3.23h2.3c.71.91 1.83 1.48 3.16 1.48 2.14 0 3.48-1.7 3.48-4.05 0-2.23-1.44-4.11-3.6-4.11-1.89 0-3.35 1.25-3.55 3.09h-2.21zM23.08 11.23c0 3.29-2.29 5.75-5.63 5.75s-5.63-2.46-5.63-5.75 2.29-5.75 5.63-5.75 5.63 2.46 5.63 5.75zm-2.23 0c0-2.18-1.5-3.95-3.4-3.95s-3.4 1.77-3.4 3.95 1.5 3.95 3.4 3.95 3.4-1.77 3.4-3.95z" fill="#00ADD8" />
+    </svg>
+);
+
+const PHPLogo = () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18.84 5h-13.68c-2.85 0-5.16 2.31-5.16 5.16v3.68c0 2.85 2.31 5.16 5.16 5.16h13.68c2.85 0 5.16-2.31 5.16-5.16v-3.68c0-2.85-2.31-5.16-5.16-5.16zm-10.43 10.32h-1.48v-3.72h1.48v3.72zm.05-4.49h-1.58v-.77h1.58c.24 0 .44-.19.44-.44s-.2-.44-.44-.44h-1.58v-.76h1.58c.67 0 1.21.54 1.21 1.21s-.54 1.2-1.21 1.2zm5.72 4.49h-1.48v-3.72h1.48v3.72zm.05-4.49h-1.58v-.77h1.58c.24 0 .44-.19.44-.44s-.2-.44-.44-.44h-1.58v-.76h1.58c.67 0 1.21.54 1.21 1.21s-.54 1.2-1.21 1.2zm5.71 4.49h-1.48v-3.72h1.48v3.72zm.06-4.49h-1.58v-.77h1.58c.24 0 .44-.19.44-.44s-.2-.44-.44-.44h-1.58v-.76h1.58c.67 0 1.21 1.21s.54 1.21 1.21 1.21z" fill="#777BB4" />
+    </svg>
+);
+
+const RubyLogo = () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.08 7.37L12 2l-10.08 5.37L2.1 16.5l9.9 5.5s9.9-5.5 9.9-5.5l.18-9.13zM12 19L5 15.5 12 7l7 8.5L12 19z" fill="#CC342D" />
+    </svg>
+);
+
+const RiskGauge = ({ score }: { score: number }) => {
+    const strokeWidth = 10;
+    const radius = 50;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (score / 100) * circumference;
+    const color = score >= 80 ? '#22c55e' : score >= 50 ? '#eab308' : '#ef4444';
+
+    return (
+        <div className="relative flex items-center justify-center">
+            <svg width="140" height="140" className="transform -rotate-90">
+                <circle
+                    cx="70" cy="70" r={radius}
+                    stroke="rgba(255,255,255,0.05)"
+                    strokeWidth={strokeWidth}
+                    fill="transparent"
+                />
+                <motion.circle
+                    cx="70" cy="70" r={radius}
+                    stroke={color}
+                    strokeWidth={strokeWidth}
+                    fill="transparent"
+                    strokeDasharray={circumference}
+                    initial={{ strokeDashoffset: circumference }}
+                    animate={{ strokeDashoffset: offset }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    strokeLinecap="round"
+                />
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <motion.span
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-3xl font-bold text-white font-mono"
+                >
+                    {score}
+                </motion.span>
+                <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Risk Score</span>
+            </div>
+        </div>
+    );
+};
+
+const VerdictBadge = ({ verdict }: { verdict: string }) => {
+    const styles: any = {
+        safe: { bg: 'bg-green-500/10', text: 'text-green-500', border: 'border-green-500/20', icon: <CheckCircle size={14} />, label: 'SAFE' },
+        risky: { bg: 'bg-yellow-500/10', text: 'text-yellow-500', border: 'border-yellow-500/20', icon: <RefreshCw size={14} />, label: 'RISKY' },
+        blocked: { bg: 'bg-red-500/10', text: 'text-red-500', border: 'border-red-500/20', icon: <XCircle size={14} />, label: 'BLOCKED' },
+    };
+
+    const s = styles[verdict.toLowerCase()] || styles.risky;
+
+    return (
+        <div className={`flex items-center gap-1.5 px-3 py-1 rounded-lg border ${s.bg} ${s.text} ${s.border} font-bold text-xs tracking-wider`}>
+            {s.icon} {s.label}
+        </div>
+    );
+};
+
+
 export default function PlaygroundPage() {
     const { user, isLoaded } = useUser();
     const [keys, setKeys] = useState<any[]>([]);
@@ -94,7 +171,7 @@ export default function PlaygroundPage() {
     const [loading, setLoading] = useState(false);
     const [response, setResponse] = useState<any>(null);
     const [fetchLoading, setFetchLoading] = useState(true);
-    const [activeTab, setActiveTab] = useState<"python" | "javascript" | "shell">("javascript");
+    const [activeTab, setActiveTab] = useState<"python" | "javascript" | "shell" | "go" | "php" | "ruby">("javascript");
     const [copied, setCopied] = useState(false);
 
     useEffect(() => {
@@ -183,7 +260,66 @@ print(response.json())`,
         shell: `curl -X POST https://api.logingate.live/api/verify-email \\
      -H "Content-Type: application/json" \\
      -H "Authorization: Bearer ${selectedKey || 'YOUR_API_KEY'}" \\
-     -d '{"email": "${testEmail || 'test@example.com'}"}'`
+     -d '{"email": "${testEmail || 'test@example.com'}"}'`,
+        go: `package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"net/http"
+)
+
+func main() {
+	url := "https://api.logingate.live/api/verify-email"
+	payload := map[string]string{"email": "${testEmail || 'test@example.com'}"}
+	jsonBody, _ := json.Marshal(payload)
+
+	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(jsonBody))
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer ${selectedKey || 'YOUR_API_KEY'}")
+
+	client := &http.Client{}
+	resp, _ := client.Do(req)
+	defer resp.Body.Close()
+
+	fmt.Println("Status:", resp.Status)
+}`,
+        php: `<?php
+$url = "https://api.logingate.live/api/verify-email";
+$data = ["email" => "${testEmail || 'test@example.com'}"];
+
+$options = [
+    'http' => [
+        'header'  => "Content-Type: application/json\\r\\n" .
+                     "Authorization: Bearer ${selectedKey || 'YOUR_API_KEY'}\\r\\n",
+        'method'  => 'POST',
+        'content' => json_encode($data)
+    ]
+];
+
+$context  = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+print_r(json_decode($result));
+?>`,
+        ruby: `require 'net/http'
+require 'uri'
+require 'json'
+
+uri = URI.parse("https://api.logingate.live/api/verify-email")
+header = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer ${selectedKey || 'YOUR_API_KEY'}'
+}
+payload = { 'email': '${testEmail || 'test@example.com'}' }
+
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = true
+request = Net::HTTP::Post.new(uri.request_uri, header)
+request.body = payload.to_json
+
+response = http.request(request)
+puts response.body`
     };
 
     const copyToClipboard = (text: string) => {
@@ -193,176 +329,182 @@ print(response.json())`,
     };
 
     return (
-        <div className="max-w-7xl mx-auto space-y-8 animate-in fade-in duration-500 pb-20 mt-8 pt-4">
-            <div className="mb-8">
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-primary/10 rounded-xl">
-                        <Play size={24} className="text-primary" />
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-8 space-y-6 sm:space-y-8">
+
+            {/* Header */}
+            <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-3">
+                    <div className="p-2 sm:p-2.5 bg-primary/10 rounded-xl">
+                        <Play className="text-primary w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <h1 className="text-3xl font-display font-bold text-white">API Playground</h1>
+
+                    <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+                        API Playground
+                    </h1>
                 </div>
-                <p className="text-gray-400">Test your email verification API in real-time and get integration code snippets.</p>
+
+                <p className="text-xs sm:text-sm lg:text-base text-gray-400">
+                    Test your email verification API and generate integration code snippets
+                </p>
             </div>
 
-            <div className="grid lg:grid-cols-12 gap-8 items-start">
-                {/* Request Configuration - Column 1 (4/12) */}
-                <div className="lg:col-span-4 space-y-6">
-                    <div className="p-6 rounded-3xl bg-[#121214] border border-white/10 shadow-sm">
-                        <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
-                            <Send size={20} className="text-primary" /> Configuration
+
+            {/* Main Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-start">
+
+                {/* LEFT SIDE */}
+                <div className="lg:col-span-4 space-y-4 sm:space-y-6">
+
+                    <div className="bg-[#121214] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6">
+
+                        <h3 className="flex items-center gap-2 text-sm sm:text-base font-semibold text-white mb-4">
+                            <Send size={18} className="text-primary" />
+                            Configuration
                         </h3>
 
-                        <form onSubmit={handleTestApi} className="space-y-6">
+                        <form onSubmit={handleTestApi} className="space-y-4">
+
+                            {/* API Key */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
-                                    <Key size={14} /> API Key
+                                <label className="text-xs sm:text-sm text-gray-300 mb-1 block">
+                                    API Key
                                 </label>
-                                <div className="relative">
-                                    <select
-                                        value={selectedKey}
-                                        onChange={(e) => setSelectedKey(e.target.value)}
-                                        className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:ring-2 focus:ring-primary outline-none appearance-none cursor-pointer"
-                                        disabled={fetchLoading || keys.length === 0}
-                                    >
-                                        {fetchLoading ? (
-                                            <option>Loading keys...</option>
-                                        ) : keys.length === 0 ? (
-                                            <option>No API keys found</option>
-                                        ) : (
-                                            keys.map((k) => (
-                                                <option key={k._id} value={k.key}>
-                                                    {k.name}
-                                                </option>
-                                            ))
-                                        )}
-                                    </select>
-                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                                        <ChevronDown size={18} />
-                                    </div>
-                                </div>
+
+                                <select
+                                    value={selectedKey}
+                                    onChange={(e) => setSelectedKey(e.target.value)}
+                                    className="w-full px-3 py-2.5 text-sm rounded-lg bg-black/50 border border-white/10 text-white outline-none"
+                                >
+                                    {keys.map((k) => (
+                                        <option key={k._id} value={k.key}>
+                                            {k.name}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
 
+                            {/* Email */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-300 mb-2">Test Email</label>
+                                <label className="text-xs sm:text-sm text-gray-300 mb-1 block">
+                                    Test Email
+                                </label>
+
                                 <input
                                     type="email"
-                                    required
-                                    placeholder="e.g. hello@example.com"
                                     value={testEmail}
                                     onChange={(e) => setTestEmail(e.target.value)}
-                                    className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:ring-2 focus:ring-primary outline-none"
+                                    placeholder="hello@example.com"
+                                    className="w-full px-3 py-2.5 text-sm rounded-lg bg-black/50 border border-white/10 text-white outline-none"
                                 />
                             </div>
 
+                            {/* Button */}
                             <button
-                                type="submit"
-                                disabled={loading || !selectedKey || !testEmail}
-                                className="w-full py-4 rounded-2xl bg-primary text-white font-bold flex items-center justify-center gap-2 hover:brightness-110 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-primary/20"
+                                disabled={loading}
+                                className="w-full flex items-center justify-center gap-2 py-2.5 sm:py-3 text-sm font-semibold bg-primary rounded-xl text-white hover:brightness-110 transition"
                             >
-                                {loading ? <RefreshCw size={20} className="animate-spin" /> : <Play size={20} />}
+                                {loading ? (
+                                    <RefreshCw className="animate-spin w-4 h-4" />
+                                ) : (
+                                    <Play size={16} />
+                                )}
+
                                 {loading ? "Verifying..." : "Verify Email"}
                             </button>
+
                         </form>
                     </div>
                 </div>
 
-                {/* Code & Response - Column 2 (8/12) */}
-                <div className="lg:col-span-8 space-y-8">
-                    {/* Visual Code Editor Component */}
-                    <div className="rounded-3xl bg-[#121214] border border-white/10 shadow-2xl overflow-hidden flex flex-col group">
-                        {/* Editor Toolbar (Mac-style) */}
-                        <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-[#1e1e1e]">
-                            <div className="flex items-center gap-6">
-                                {/* Window Dots */}
-                                <div className="flex gap-1.5 mr-2">
-                                    <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                                    <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                                    <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
-                                </div>
-                                <div className="flex items-center">
+
+                {/* RIGHT SIDE */}
+                <div className="lg:col-span-8 space-y-4 sm:space-y-6">
+
+                    {/* CODE EDITOR */}
+                    <div className="bg-[#121214] border border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden">
+
+                        {/* Toolbar */}
+                        <div className="flex items-center justify-between px-3 sm:px-4 py-3 border-b border-white/10 bg-[#1e1e1e] overflow-x-auto">
+
+                            <div className="flex items-center gap-2 sm:gap-3 min-w-max">
+
+                                {["javascript", "python", "shell", "go", "php", "ruby"].map((lang) => (
                                     <button
-                                        onClick={() => setActiveTab("javascript")}
-                                        className={`px-3 py-1.5 flex items-center gap-1.5 text-xs font-semibold rounded-t-lg transition-all ${activeTab === "javascript" ? "bg-[#1e1e1e] text-[#569cd6] border-b-2 border-[#569cd6]" : "text-gray-500 hover:text-gray-300"}`}
+                                        key={lang}
+                                        onClick={() => setActiveTab(lang as any)}
+                                        className={`px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-md whitespace-nowrap
+                  ${activeTab === lang ? "bg-white/10 text-white" : "text-gray-400"}`}
                                     >
-                                        <JavascriptLogo /> JS
+                                        {lang}
                                     </button>
-                                    <button
-                                        onClick={() => setActiveTab("python")}
-                                        className={`px-3 py-1.5 flex items-center gap-1.5 text-xs font-semibold rounded-t-lg transition-all ${activeTab === "python" ? "bg-[#1e1e1e] text-[#569cd6] border-b-2 border-[#569cd6]" : "text-gray-500 hover:text-gray-300"}`}
-                                    >
-                                        <PythonLogo /> Python
-                                    </button>
-                                    <button
-                                        onClick={() => setActiveTab("shell")}
-                                        className={`px-3 py-1.5 flex items-center gap-1.5 text-xs font-semibold rounded-t-lg transition-all ${activeTab === "shell" ? "bg-[#1e1e1e] text-[#569cd6] border-b-2 border-[#569cd6]" : "text-gray-500 hover:text-gray-300"}`}
-                                    >
-                                        <BashLogo /> Shell
-                                    </button>
-                                </div>
+                                ))}
+
                             </div>
+
                             <button
                                 onClick={() => copyToClipboard(codeTemplates[activeTab])}
-                                className="p-2 hover:bg-white/5 rounded-lg transition-colors text-gray-500 hover:text-white flex items-center gap-2 text-xs font-bold"
+                                className="flex items-center gap-1 text-xs text-gray-400 hover:text-white"
                             >
-                                {copied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
-                                {copied ? "Copied!" : "Copy Code"}
+                                {copied ? <Check size={14} /> : <Copy size={14} />}
+                                {copied ? "Copied" : "Copy"}
                             </button>
+
                         </div>
 
-                        {/* Code Display Area */}
-                        <CodeEditor
-                            code={codeTemplates[activeTab]}
-                            language={activeTab}
-                        />
+                        {/* Code */}
+                        <div className="max-h-[350px] sm:max-h-[450px] overflow-auto">
+                            <CodeEditor
+                                code={codeTemplates[activeTab]}
+                                language={activeTab}
+                            />
+                        </div>
+
                     </div>
 
-                    {/* Response Panel */}
-                    <div className="flex flex-col p-6 rounded-3xl bg-[#121214] border border-white/10 shadow-sm overflow-hidden min-h-[300px]">
-                        <div className="flex items-center justify-between mb-6">
-                            <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                                <Terminal size={20} className="text-primary" /> API Response Output
+
+                    {/* RESPONSE */}
+                    <div className="bg-[#121214] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6">
+
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="flex items-center gap-2 text-sm sm:text-base font-semibold text-white">
+                                <Terminal size={18} className="text-primary" />
+                                API Response
                             </h3>
-                            {response && (
-                                <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold ${response.status < 400 ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'
-                                    }`}>
-                                    Status: {response.status}
-                                </div>
-                            )}
                         </div>
 
-                        <div className="flex-1 bg-black/50 rounded-2xl border border-white/5 p-4 font-mono text-sm overflow-auto max-h-[800px] custom-scrollbar">
-                            {!response && !loading && (
-                                <div className="h-full flex flex-col items-center justify-center text-gray-400 text-center space-y-4 min-h-[200px]">
-                                    <div className="p-4 bg-white/5 rounded-full">
-                                        <Terminal size={32} />
+                        {!response && (
+                            <div className="flex items-center justify-center h-[200px] text-gray-500 text-sm">
+                                Live response will appear here
+                            </div>
+                        )}
+
+                        {response && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                                {/* Score */}
+                                <div className="bg-black/40 border border-white/5 rounded-xl p-4 flex flex-col items-center">
+                                    <RiskGauge score={response.data?.data?.score ?? 0} />
+                                    <div className="mt-3">
+                                        <VerdictBadge verdict={response.data?.data?.verdict ?? "risky"} />
                                     </div>
-                                    <p>Live response logs will appear here...</p>
                                 </div>
-                            )}
 
-                            {loading && (
-                                <div className="space-y-3">
-                                    <div className="h-4 w-3/4 bg-white/5 rounded animate-pulse"></div>
-                                    <div className="h-4 w-1/2 bg-white/5 rounded animate-pulse"></div>
-                                    <div className="h-4 w-5/6 bg-white/5 rounded animate-pulse"></div>
-                                </div>
-                            )}
-
-                            <AnimatePresence mode="wait">
-                                {response && (
-                                    <motion.pre
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        className="text-[#9cdcfe] whitespace-pre-wrap"
-                                    >
+                                {/* JSON */}
+                                <div className="bg-black/40 border border-white/5 rounded-xl p-3 overflow-auto max-h-[350px]">
+                                    <pre className="text-xs sm:text-sm text-[#9cdcfe] whitespace-pre-wrap">
                                         {JSON.stringify(response.data, null, 2)}
-                                    </motion.pre>
-                                )}
-                            </AnimatePresence>
-                        </div>
+                                    </pre>
+                                </div>
+
+                            </div>
+                        )}
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
     );
 }

@@ -21,8 +21,8 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateHome, initialTab = 'ana
   const [activeTab, setActiveTab] = useState(initialTab);
 
   return (
-    <div className="min-h-screen bg-transparent pb-20 transition-colors duration-300">
-      <div className="pt-8 px-6 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-transparent pb-20 transition-colors duration-300 px-2 sm:px-0">
+      <div className="pt-4 sm:pt-8 px-2 sm:px-6 max-w-7xl mx-auto">
         <motion.div
           key={activeTab}
           initial={{ opacity: 0, y: 10 }}
@@ -90,9 +90,9 @@ const AnalysisView = () => {
 
   return (
     <div className="space-y-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-display font-bold text-white mb-2">Overview</h1>
-        <p className="text-gray-400">Real-time metrics for your API usage based on actual verification checks.</p>
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">Overview</h1>
+        <p className="text-sm sm:text-base text-gray-400">Real-time metrics for your API usage based on actual verification checks.</p>
       </div>
 
       {/* Stats Grid */}
@@ -121,11 +121,11 @@ const AnalysisView = () => {
       </div>
 
       {/* Main Chart Section */}
-      <div className="grid lg:grid-cols-3 gap-6 mt-8">
-        <div className="lg:col-span-2 p-6 rounded-3xl bg-white/5 border border-white/10 shadow-sm">
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="font-bold text-lg text-white">Request Volume</h3>
-            <select className="bg-white/10 border-none rounded-lg px-3 py-1 text-sm text-white outline-none cursor-pointer">
+      <div className="grid lg:grid-cols-3 gap-6 mt-6 sm:mt-8">
+        <div className="lg:col-span-2 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 shadow-sm">
+          <div className="flex items-center justify-between mb-6 sm:mb-8">
+            <h3 className="font-bold text-base sm:text-lg text-white">Request Volume</h3>
+            <select className="bg-white/10 border-none rounded-lg px-2 py-1 text-xs sm:text-sm text-white outline-none cursor-pointer">
               <option>Last 7 Days</option>
             </select>
           </div>
@@ -155,8 +155,8 @@ const AnalysisView = () => {
           </div>
         </div>
 
-        <div className="p-6 rounded-3xl bg-white/5 border border-white/10 shadow-sm">
-          <h3 className="font-bold text-lg text-white mb-6">Threat Distribution</h3>
+        <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 shadow-sm">
+          <h3 className="font-bold text-base sm:text-lg text-white mb-6">Threat Distribution</h3>
           <div className="space-y-6">
             {stats.distribution.length > 0 ? stats.distribution.map((threat, idx) => (
               <DistributionItem key={idx} label={threat.label} percent={threat.percent} color={threat.color || 'bg-red-500'} />
@@ -165,8 +165,8 @@ const AnalysisView = () => {
             )}
           </div>
 
-          <div className="mt-8 p-4 rounded-xl bg-primary/5 border border-primary/10">
-            <p className="text-sm text-gray-300">
+          <div className="mt-8 p-3 sm:p-4 rounded-xl bg-primary/5 border border-primary/10">
+            <p className="text-xs sm:text-sm text-gray-300">
               <span className="font-bold text-primary">Tip:</span> Your data automatically refreshes as verifications occur.
             </p>
           </div>
@@ -174,67 +174,67 @@ const AnalysisView = () => {
       </div>
 
       {/* 2. Side-by-Side Comparison based on API analytics*/}
-      <div className="grid lg:grid-cols-2 gap-8 mt-6">
+      <div className="grid lg:grid-cols-2 gap-6 md:gap-8 mt-6">
         {/* Safe Zone (Blue) */}
-        <div className="p-10 rounded-[3rem] bg-white/5 border border-white/10 shadow-xl group">
-          <div className="flex items-center justify-between mb-10">
+        <div className="p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] bg-white/5 border border-white/10 shadow-xl group">
+          <div className="flex items-center justify-between mb-8 sm:mb-10">
             <div className="flex items-center gap-4">
-              <div className="p-3 rounded-2xl bg-blue-500/10 text-blue-500 shadow-inner">
-                <CheckCircle size={24} />
+              <div className="p-2.5 sm:p-3 rounded-2xl bg-blue-500/10 text-blue-500 shadow-inner">
+                <CheckCircle size={20} className="sm:w-6 sm:h-6" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Safe Zone</h3>
-                <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">Verdicts: ALLOW</p>
+                <h3 className="text-lg sm:text-xl font-bold text-white">Safe Zone</h3>
+                <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Verdicts: ALLOW</p>
               </div>
             </div>
           </div>
 
-          <div className="h-[220px]">
+          <div className="h-[180px] sm:h-[220px]">
             {stats.safeData.length > 0 ? (
-              <InteractiveChart data={stats.safeData} color="#3B82F6" height={220} showArea={false} />
+              <InteractiveChart data={stats.safeData} color="#3B82F6" height={typeof window !== 'undefined' && window.innerWidth < 640 ? 180 : 220} showArea={false} />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-400">Loading tracking data...</div>
+              <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">Loading tracking data...</div>
             )}
           </div>
 
-          <div className="mt-12 flex items-end justify-between">
+          <div className="mt-8 sm:mt-12 flex items-end justify-between">
             <div>
-              <p className="text-3xl font-black text-white">
+              <p className="text-2xl sm:text-3xl font-black text-white">
                 {stats.safeData.reduce((a, b) => a + b.value, 0).toLocaleString()}
               </p>
-              <p className="text-xs text-gray-500 font-medium">Clean traffic successfully passed (Last 7 Days)</p>
+              <p className="text-[10px] sm:text-xs text-gray-500 font-medium whitespace-pre-wrap">Clean traffic successfully passed (Last 7 Days)</p>
             </div>
           </div>
         </div>
 
         {/* Fake Zone (Red) */}
-        <div className="p-10 rounded-[3rem] bg-white/5 border border-white/10 shadow-xl group">
-          <div className="flex items-center justify-between mb-10">
+        <div className="p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] bg-white/5 border border-white/10 shadow-xl group">
+          <div className="flex items-center justify-between mb-8 sm:mb-10">
             <div className="flex items-center gap-4">
-              <div className="p-3 rounded-2xl bg-red-500/10 text-red-500 shadow-inner">
-                <ShieldAlert size={24} />
+              <div className="p-2.5 sm:p-3 rounded-2xl bg-red-500/10 text-red-500 shadow-inner">
+                <ShieldAlert size={20} className="sm:w-6 sm:h-6" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Fake Zone</h3>
-                <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">Verdicts: BLOCK</p>
+                <h3 className="text-lg sm:text-xl font-bold text-white">Fake Zone</h3>
+                <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Verdicts: BLOCK</p>
               </div>
             </div>
           </div>
 
-          <div className="h-[220px]">
+          <div className="h-[180px] sm:h-[220px]">
             {stats.fakeData.length > 0 ? (
-              <InteractiveChart data={stats.fakeData} color="#EF4444" height={220} showArea={false} />
+              <InteractiveChart data={stats.fakeData} color="#EF4444" height={typeof window !== 'undefined' && window.innerWidth < 640 ? 180 : 220} showArea={false} />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-400">Loading tracking data...</div>
+              <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">Loading tracking data...</div>
             )}
           </div>
 
-          <div className="mt-12 flex items-end justify-between">
+          <div className="mt-8 sm:mt-12 flex items-end justify-between">
             <div>
-              <p className="text-3xl font-black text-white">
+              <p className="text-2xl sm:text-3xl font-black text-white">
                 {stats.fakeData.reduce((a, b) => a + b.value, 0).toLocaleString()}
               </p>
-              <p className="text-xs text-gray-500 font-medium">Malicious threats intercepted (Last 7 Days)</p>
+              <p className="text-[10px] sm:text-xs text-gray-500 font-medium whitespace-pre-wrap">Malicious threats intercepted (Last 7 Days)</p>
             </div>
           </div>
         </div>
@@ -291,14 +291,14 @@ const ChecklistView = () => {
 
   return (
     <div className="max-w-6xl mx-auto min-h-[600px]">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 sm:mb-8">
         <div>
-          <h1 className="text-3xl font-display font-bold text-white mb-2">Access Control Lists</h1>
-          <p className="text-gray-400">Manage your custom Allow/Deny rules.</p>
+          <h1 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">Access Control Lists</h1>
+          <p className="text-sm sm:text-base text-gray-400">Manage your custom Allow/Deny rules.</p>
         </div>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center justify-center gap-2 bg-white text-black px-5 py-2.5 rounded-xl font-medium hover:opacity-90 transition-opacity shadow-lg shadow-white/10"
+          className="flex items-center justify-center gap-2 bg-white text-black px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl text-sm sm:text-base font-medium hover:opacity-90 transition-opacity shadow-lg shadow-white/10 w-full sm:w-auto"
         >
           <Plus size={18} /> Add Entry
         </button>
@@ -328,19 +328,19 @@ const ChecklistView = () => {
         </div>
 
         <div className="relative flex-1">
-          <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
-            placeholder="Search emails, IPs, or domains..."
+            placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-white placeholder:text-gray-500"
+            className="w-full pl-9 pr-4 py-2.5 sm:py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-white placeholder:text-gray-500 text-sm"
           />
         </div>
       </div>
 
       {/* Table Card */}
-      <div className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-sm">
+      <div className="bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -549,15 +549,15 @@ const DocsView = () => {
 
       {/* Main Content */}
       <div className="flex-1 min-w-0 pb-16">
-        <div className="flex items-center gap-2 text-sm text-gray-500 mb-6 font-medium">
-          <span className="hover:text-white cursor-pointer">MailVex</span>
-          <ChevronRight size={14} />
+        <div className="flex items-center gap-2 text-[10px] sm:text-sm text-gray-500 mb-6 font-medium overflow-x-auto whitespace-nowrap custom-scrollbar pb-2">
+          <span className="hover:text-white cursor-pointer">LOGINGATE</span>
+          <ChevronRight size={14} className="shrink-0" />
           <span className="hover:text-white cursor-pointer">Getting Started</span>
-          <ChevronRight size={14} />
+          <ChevronRight size={14} className="shrink-0" />
           <span className="text-white font-semibold">Introduction</span>
         </div>
 
-        <h1 className="text-4xl font-bold text-white mb-6 tracking-tight">Introduction</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-white mb-6 tracking-tight">Introduction</h1>
 
         <p className="text-lg text-gray-400 leading-relaxed mb-6">
           MailVex provides a high-performance REST API for detecting disposable emails, fake signups, and high-risk IP addresses in real-time.
@@ -627,13 +627,13 @@ const DocsView = () => {
 // --- SETTINGS VIEW ---
 const SettingsView = () => (
   <div className="max-w-2xl mx-auto space-y-8">
-    <div className="mb-8">
-      <h1 className="text-3xl font-display font-bold text-white mb-2">Settings</h1>
-      <p className="text-gray-400">Manage your account and API keys.</p>
+    <div className="mb-6 sm:mb-8">
+      <h1 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">Settings</h1>
+      <p className="text-sm sm:text-base text-gray-400">Manage your account and API keys.</p>
     </div>
 
     {/* Profile Section */}
-    <div className="p-6 rounded-3xl bg-white/5 border border-white/10">
+    <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10">
       <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
         <UserIcon /> Profile Information
       </h3>
@@ -654,21 +654,21 @@ const SettingsView = () => (
         </div>
       </div>
       <div className="mt-6 flex justify-end">
-        <button className="px-4 py-2 bg-white text-black font-medium rounded-lg hover:opacity-90 transition-opacity">
+        <button className="w-full sm:w-auto px-4 py-2.5 bg-white text-black font-medium rounded-lg hover:opacity-90 transition-opacity text-sm">
           Save Changes
         </button>
       </div>
     </div>
 
     {/* API Key Section */}
-    <div className="p-6 rounded-3xl bg-white/5 border border-white/10">
-      <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
-        <Key size={20} className="text-primary" /> API Keys
+    <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10">
+      <h3 className="text-base sm:text-lg font-bold text-white mb-6 flex items-center gap-2">
+        <Key size={18} className="text-primary sm:w-5 sm:h-5" /> API Keys
       </h3>
-      <div className="p-4 rounded-xl bg-black border border-white/10 flex items-center justify-between">
-        <div>
-          <p className="text-xs text-gray-500 uppercase font-semibold mb-1">Production Key</p>
-          <p className="font-mono text-white text-sm">mv_live_sk_****************4x92</p>
+      <div className="p-3 sm:p-4 rounded-xl bg-black border border-white/10 flex items-center justify-between">
+        <div className="overflow-hidden mr-2">
+          <p className="text-[10px] text-gray-500 uppercase font-semibold mb-1">Production Key</p>
+          <p className="font-mono text-white text-[11px] sm:text-sm truncate">mv_live_sk_****************4x92</p>
         </div>
         <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-500">
           <Copy size={18} />
@@ -685,17 +685,17 @@ const SettingsView = () => (
 
 // Helper Components
 const StatCard = ({ title, value, change, icon: Icon, color }: any) => (
-  <div className="p-6 rounded-3xl bg-white/5 border border-white/10 shadow-sm hover:translate-y-0.5 transition-transform">
+  <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 shadow-sm hover:translate-y-0.5 transition-transform">
     <div className="flex items-center justify-between mb-4">
-      <div className={`p-2 rounded-xl bg-white/5 ${color} bg-opacity-10`}>
-        <Icon size={22} className={color} />
+      <div className={`p-1.5 sm:p-2 rounded-xl bg-white/5 ${color} bg-opacity-10`}>
+        <Icon size={20} className={`${color} sm:w-5 sm:h-5`} />
       </div>
-      <span className={`text-xs font-bold px-2 py-1 rounded-full ${change.startsWith('+') ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
+      <span className={`text-[10px] sm:text-xs font-bold px-2 py-1 rounded-full ${change.startsWith('+') ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
         {change}
       </span>
     </div>
-    <h3 className="text-2xl font-bold text-white mb-1">{value}</h3>
-    <p className="text-sm text-gray-400">{title}</p>
+    <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">{value}</h3>
+    <p className="text-xs sm:text-sm text-gray-400">{title}</p>
   </div>
 );
 

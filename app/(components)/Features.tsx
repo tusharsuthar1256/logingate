@@ -4,10 +4,10 @@ import { FEATURES } from '../constants';
 
 const Features: React.FC = () => {
   return (
-    <section id="features" className="py-24 bg-[#0A0A0B]/50 relative text-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-white mb-4">
+    <section id="features" className="py-16 md:py-24 bg-[#0A0A0B]/50 relative text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-white mb-4">
             A single API to protect against <br />
             <span className="text-gray-500 dark:text-gray-400">every bad actor.</span>
           </h2>
@@ -20,7 +20,7 @@ const Features: React.FC = () => {
           {FEATURES.map((feature, index) => (
             <div
               key={index}
-              className="group glass-card p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden"
+              className="group glass-card p-6 sm:p-8 rounded-2xl sm:rounded-3xl hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primary/10 transition-colors"></div>
 

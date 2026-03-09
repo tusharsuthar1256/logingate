@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useUser, Show, UserButton } from "@clerk/nextjs";
-import { Menu, X, Play } from "lucide-react";
+import { Menu, X, Play, Globe } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -115,15 +115,17 @@ export default function Navbar() {
           )}
           <Show when="signed-in">
             {isPlayground && (
-              <Link href="/dashboard" className="text-gray-300 hover:text-white text-sm font-medium transition-colors">
-                Website <span className="text-lg leading-none -mt-0.5">&rarr;</span>
+              <Link href="/dashboard" className="p-2 rounded-full hover:bg-white/10 text-gray-300 transition-colors" title="Go to Website">
+                <Globe size={22} />
               </Link>
             )}
             <UserButton />
           </Show>
-          <button onClick={() => setOpen(!open)} className="text-white p-2 hover:bg-white/10 rounded-full transition-colors">
-            {open ? <X size={26} /> : <Menu size={26} />}
-          </button>
+          {!isPlayground && (
+            <button onClick={() => setOpen(!open)} className="text-white p-2 hover:bg-white/10 rounded-full transition-colors">
+              {open ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          )}
         </div>
       </div>
 
