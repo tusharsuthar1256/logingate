@@ -51,6 +51,8 @@ export async function POST(req: Request) {
         const apiBase = process.env.NEXT_API_SUB_DOMAIN || "http://localhost:4000/";
         const apiUrl = `${apiBase.endsWith('/') ? apiBase.slice(0, -1) : apiBase}/api/v1/verify/email`;
 
+        console.log(`[Proxy] Connecting to backend at: ${apiUrl}`);
+
         const backendResponse = await fetch(apiUrl, {
             method: "POST",
             headers: {
